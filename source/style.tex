@@ -16,10 +16,10 @@
 \setuppagenumbering[location={footer,middle}]
 
 \setupinteraction
-  [state=start,               % turn on hyperlink functionality
-   color=darkgreen,           % the default color for links
-   contrastcolor=headerblue,  % for links that go somewhere in the same page
-   focus=standard]            % make links open in current level of zoom
+  [state=start,                 % turn on hyperlink functionality
+   color=linkcolor,             % the default color for links
+   contrastcolor=linkcontrast,  % for links that go somewhere in the same page
+   focus=standard]              % make links open in current level of zoom
 
 \setupwhitespace[none]       % set spacing between paragraphs
 \setupindenting[yes, small]  % whitespace at the start of paragraphs
@@ -29,18 +29,18 @@
 
 \setuphead  % adjust how 'chapter' headings look & behave
   [chapter]
-  [align={flushleft,broad}, style=\bfd, color=headerblue, page=no]
+  [align={flushleft,broad}, style=\bfd, color=headercolor, page=no]
 
 \setuphead  % adjust how 'section' headings look & behave
   [section]
-  [align={flushleft,broad}, style=\bfb, color=headerblue]
+  [align={flushleft,broad}, style=\bfb, color=headercolor]
 
 \defineframedtext  % create a 'framed text' for use below
   [framedbackground]
   [frame=off,
    width=broad,
    background=color,
-   backgroundcolor=pastelblue]
+   backgroundcolor=backgroundcolor]
 
 % use Cascadia Code by default for all 'type' and 'typing'
 \setuptype[style={\switchtobodyfont[cascadia,small]}]
@@ -56,7 +56,7 @@
   [typing]
   [style={\switchtobodyfont[cascadia,small]},
    distance=1.5em,
-   color=darkgray]
+   color=numbercolor]
 
 \setupcombinedlist  % configure how the Table of Contents is shown
   [content]
