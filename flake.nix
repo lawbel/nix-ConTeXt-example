@@ -13,7 +13,7 @@
       system = "x86_64-linux";
 
       # the name of the Nix project
-      project-name = "ConTeXt template";
+      project-name = "ConTeXt example";
 
       # add fonts here - `pkgs.cascadia-code` is a popular font for example
       fonts = pkgs.makeFontsConf {
