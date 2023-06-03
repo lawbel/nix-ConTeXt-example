@@ -38,3 +38,9 @@ It is also possible to inspect this project:
   `nix flake show github:rvLMdE7/nix-ConTeXt-example`
 - to show metadata & inputs required, run
   `nix flake show github:rvLMdE7/nix-ConTeXt-example`
+
+## Images
+
+Below is how the final document looks like:
+
+![PDF Output](images/output.png)
