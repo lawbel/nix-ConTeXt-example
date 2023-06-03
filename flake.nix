@@ -47,33 +47,15 @@
           ];
 
           # This (together with 'installPhase' below) is the main place to
-          # control how the document gets built.
+          # control how the document gets built. For example, to use the
+          # Dutch interface and the LuaJIT compiler a suitable 'buildPhase'
+          # might be:
           #
-          # For example, suppose that:
-          #
-          # (1) we need to pass some extra arguments to `context` when
-          #     building - let's use the Dutch interface and the
-          #     LuaJIT compiler.
-          # (2) the project spans multiple files, organized within a 'source'
-          #     folder as illustrated below.
-          #
-          #     .
-          #     |-- flake.nix
-          #     `-- source/
-          #         |-- main.tex
-          #         |-- chapter-one.tex
-          #         |-- chapter-two.tex
-          #         |-- fonts.tex
-          #         `-- style.tex
-          #
-          # Then a suitable 'buildPhase' might be:
-          #
-          #     buildPhase = ''
-          #       export FONTCONFIG_FILE=${fonts}
-          #       context --interface=nl --jit source/main.tex
-          #     '';
-          #
-          # and for the 'installPhase' we could still use the one below.
+          #   buildPhase = ''
+          #     export FONTCONFIG_FILE=${fonts}
+          #     cd source
+          #     context --interface=nl --jit main.tex
+          #   '';
           buildPhase = ''
             export FONTCONFIG_FILE=${fonts}
             cd source
@@ -93,12 +75,18 @@
           ];
         };
 
-        # this tool is provided for convenience - if you run a command like
+        # this output is provided for convenience - if you run a command like
         # `nix run .#query-fonts -- ...` then you can check what fonts
         # ConTeXt is able to see, and what names it refers to them by.
         #
-        # For example, if you want to use the Fira Code fonts (pkgs.fira-code)
-        # as we have above, then TODO: finish this comment
+        # For example, to use the Cascadia Code fonts (pkgs.cascadia-code)
+        # as configured above, run
+        #
+        #   nix run .#query-fonts -- --list --all cascadia
+        #
+        # and look in the 'filename' column to get the base file names for the
+        # regular / bold / italic etc. font variants. See source/fonts.tex for
+        # more details.
         query-fonts = pkgs.writeShellApplication {
           name = "query-fonts";
           runtimeInputs = [pkgs.texlive.combined.scheme-context];
