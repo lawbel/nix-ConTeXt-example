@@ -1,0 +1,66 @@
+\startenvironment[style]
+
+\environment[fonts]
+\environment[colors]
+
+\setupbodyfont[pagella]
+
+\definelayout  % define a page layout
+  [example]    % set the name
+  [middle]     % start from the existing 'middle' layout
+  [topspace=16mm,
+   backspace=24mm]
+
+\setuplayout[example]  % use the 'example' layout
+
+\setuppagenumbering[location={footer,middle}]
+
+\setupinteraction
+  [state=start,               % turn on hyperlink functionality
+   color=darkgreen,           % the default color for links
+   contrastcolor=headerblue,  % for links that go somewhere in the same page
+   focus=standard]            % make links open in current level of zoom
+
+\setupwhitespace[none]       % set spacing between paragraphs
+\setupindenting[yes, small]  % whitespace at the start of paragraphs
+
+\setupmathematics  % set limits off to the side, rather than above/below
+  [integral=nolimits]
+
+\setuphead  % adjust how 'chapter' headings look & behave
+  [chapter]
+  [align={flushleft,broad}, style=\bfd, color=headerblue, page=no]
+
+\setuphead  % adjust how 'section' headings look & behave
+  [section]
+  [align={flushleft,broad}, style=\bfb, color=headerblue]
+
+\defineframedtext  % create a 'framed text' for use below
+  [framedbackground]
+  [frame=off,
+   width=broad,
+   background=color,
+   backgroundcolor=pastelblue]
+
+% use Cascadia Code by default for all 'type' and 'typing'
+\setuptype[style={\switchtobodyfont[cascadia,small]}]
+\setuptyping[bodyfont={cascadia,small}]
+
+\setuptyping
+  [strip=yes,                        % strip leading whitespace
+   numbering=line,                   % turn on line numbering
+   before={\startframedbackground},  % use this hook to begin the background...
+   after={\stopframedbackground}]    % ...and this hook to end it
+
+\setuplinenumbering  % tweak how the line numbering is done
+  [typing]
+  [style={\switchtobodyfont[cascadia,small]},
+   distance=1.5em,
+   color=darkgray]
+
+\setupcombinedlist  % configure how the Table of Contents is shown
+  [content]
+  [list={chapter,section},  % include these, and hide any other headings
+   alternative=c]           % use predefined style 'c'
+
+\stopenvironment

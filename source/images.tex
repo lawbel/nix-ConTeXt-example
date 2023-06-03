@@ -1,0 +1,44 @@
+\startenvironment[images]
+
+\environment[colors]
+
+\startuseMPgraphic{residue}
+  path U, γ;
+  pair a[], label_U, label_γ, label_a, intercept;
+
+  U := (10, 10) .. (30, 10) .. (80, 0) .. (180, 40) .. (170, 70) .. (160, 80)
+    .. (30, 90) .. (20, 80) .. cycle;
+  γ := (45, 35) .. (65, 30) .. (80, 25) .. (140, 20) .. (130, 60) .. (115, 80)
+    .. (90, 90) .. (75, 85) .. (50, 80) .. cycle;
+
+  a[0] := (55, 45);
+  a[1] := (100, 75);
+  a[2] := (60, 70);
+  a[3] := (115, 20);
+
+  label_U := (145, 80);
+  label_γ := (25, 35);
+  label_a := (10, 100);
+
+  fill U withcolor "pastelblue";
+  draw U dashed dashpattern (on 3mm off 2mm);
+  draw γ;
+
+  for k = 0 upto 3:
+    drawdot a[k] withpen pencircle scaled 1mm;
+    draw label_a -- a[k] withpen pencircle scaled .08mm;
+  endfor
+
+  intercept := reverse γ intersectionpoint (label_γ -- (90, 90));
+  draw label_γ -- intercept withpen pencircle scaled .08mm;
+
+  begingroup
+    interim textextoffset := .7ExHeight;
+
+    draw thetextext.lft("\m{γ}", label_γ);
+    draw thetextext("\m{U}", label_U);
+    draw thetextext.lft("\m{A}", label_a);
+  endgroup
+\stopuseMPgraphic
+
+\stopenvironment

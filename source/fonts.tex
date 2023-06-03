@@ -1,0 +1,65 @@
+\startenvironment[fonts]
+
+% we wrap this section in a setup for ease, so that we don't have to worry
+% about trailing whitespace creeping in when we switch to these fonts
+\startsetups[font:cascadia]
+
+% Here we set up 'Cascadia Code' font, a monospace font.
+%
+% It can be difficult to set up a font that doesn't come bundled
+% with ConTeXt. To help with that, the below links have some good advice:
+%
+% (1) https://wiki.contextgarden.net/Fonts
+% (2) https://wiki.contextgarden.net/Use_the_fonts_you_want
+%
+% Step 1/3: choose some convenient names to associate with the raw font files.
+% The raw font files can be found by examining the output of
+%
+%   nix run .#query-fonts -- --list --file cascadia
+%
+% which should look something like (omitting some of the output, as it
+% includes a lot of different information):
+%
+%   familyname    weight  style   ...  filename
+%
+%   ...
+%   cascadiacode  normal  normal  ...  /nix/store/.../CascadiaCode-Regular.otf
+%   cascadiacode  normal  italic  ...  /nix/store/.../CascadiaCode-Italic.otf
+%   cascadiacode  bold    normal  ...  /nix/store/.../CascadiaCode-Bold.otf
+%
+% So, for the bold version of cascadia, we can use file:CascadiaCode-Bold
+% as that is the base file-name from the last line here - drop the
+% extenstion `.otf` and don't include the path to the file.
+%
+% Following this process for all variants (but opting to use semi-light
+% versions), we get this:
+\starttypescript[cascadia]
+  \definefontsynonym[Cascadia-Regular]    [file:CascadiaCode-SemiLight]
+  \definefontsynonym[Cascadia-Italic]     [file:CascadiaCode-SemiLightItalic]
+  \definefontsynonym[Cascadia-Bold]       [file:CascadiaCode-SemiBold]
+  \definefontsynonym[Cascadia-BoldItalic] [file:CascadiaCode-SemiBoldItalic]
+\stoptypescript
+
+% step 2/3: map ConTeXt font types (for monospace fonts these include
+% "Mono", "MonoItalic", "MonoBold", and "MonoBoldItalic") to the names above
+\starttypescript[cascadia]
+  % add a fallback in case we try to use some characters that are missing
+  % from the font
+  \setups[font:fallback:mono]
+  \definefontsynonym[Mono]           [Cascadia-Regular]    [features=default]
+  \definefontsynonym[MonoItalic]     [Cascadia-Italic]     [features=default]
+  \definefontsynonym[MonoBold]       [Cascadia-Bold]       [features=default]
+  \definefontsynonym[MonoBoldItalic] [Cascadia-BoldItalic] [features=default]
+\stoptypescript
+
+% step 3/3: now define a 'typeface' from these fonts and give it a name
+\starttypescript[cascadia]
+  \definetypeface[cascadia] [tt] [mono] [cascadia] [default]
+\stoptypescript
+
+\stopsetups
+
+
+\setup[font:cascadia]  % run the above setup
+
+\stopenvironment

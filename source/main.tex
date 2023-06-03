@@ -1,0 +1,68 @@
+% For help learning ConTeXt, or as a reference material, a good resource is
+% https://wiki.contextgarden.net/
+
+\environment[style]
+\environment[images]
+
+\starttext
+
+\placebookmarks  % generate PDF bookmarks
+  [chapter, section]  % show these headings in the bookmarks
+  [chapter, section]  % when the file is first opened, expand these headings
+
+\placecontent  % place a default table of contents
+
+\chapter[title={Chapter One}]
+
+\section[title={Code Samples}]
+
+Below is a basic setup for a \type{flake.nix} file to build
+a \CONTEXT{} document.
+
+\starttyping
+stdenv.mkDerivation {
+    buildInputs = [texlive.combined.scheme-context];
+    buildPhase  = "FONTCONFIG_FILE=${fonts} context main.tex";
+    unpackPhase = "mkdir -p $out && cp main.pdf $out"
+}
+\stoptyping
+
+\section[title={Graphics & Mathematics}]
+
+To show off some graphics and maths typesetting we present the Residue
+Theorem, a~mathematical result from the field of Complex Analysis:
+
+\blank
+
+\definemathcommand[wind] {\mfunction{I}}
+\definemathcommand[Res]  {\mfunction{Res}}
+
+\startcolumns[n=2]
+
+  Suppose that \m{U \subset \complexes} is open and simply||connected,
+  containing a set of points \m{\fenced[brace]{a_1, \ldots, a_n} = A}. Let
+  \m{f} be holomorphic on \m{U_0 = U \setminus A} and \m{γ \subset U_0} be
+  some closed rectifiable curve. See \in{figure}[fig:residue] for an
+  illustration. Also, denote the winding number of \m{γ} around each point
+  \m{a \in A} by \m{\wind(γ, a)}.
+
+  Then the integral of \m{f} around \m{γ} equals \m{2πi} the sum of residues
+  of \m{f} over \m{A}, each counted as many times as \m{γ} winds around
+  that point:
+
+\column
+
+  \placefigure
+    [text]
+    [fig:residue]
+    {The setting in \m{\complexes}}
+    {\useMPgraphic{residue}}
+
+\stopcolumns
+
+\startformula
+  \frac{1}{2πi} \, \oint_γ f(z) \, dz
+    = \sum_{a \in A} \wind(γ, a) \, \Res(f, a)
+\stopformula
+
+\stoptext
