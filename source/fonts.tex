@@ -41,8 +41,49 @@
   \definefontsynonym[Cascadia-BoldItalic] [file:CascadiaCode-SemiBoldItalic]
 \stoptypescript
 
-% step 2/3: map ConTeXt font types (for monospace fonts these include
-% "Mono", "MonoItalic", "MonoBold", and "MonoBoldItalic") to the names above
+% step 2/3: map 'ConTeXt basics names' (for monospace fonts these include
+% "Mono", "MonoItalic", "MonoBold", and "MonoBoldItalic") to the names above.
+%
+% I don't know a good way to find these 'ConTeXt basics names' other than by
+% looking at existing font definitions that come with ConTeXt. For reference,
+% here are the names for different font types (which can also be found at
+% `tex/context/base/mkiv/font-sel.lua`, search for "m_synonym", in your
+% ConTeXt distribution)
+%
+% - rm ('roman' / serif):
+%   - Serif            (tf)
+%   - SerifBold        (bf)
+%   - SerifItalic      (it)
+%   - SerifSlanted     (sl)
+%   - SerifBoldItalic  (bi)
+%   - SerifBoldSlanted (bs)
+%   - SerifCaps        (sc)
+% - ss (sans-serif):
+%   - Sans             (tf)
+%   - SansBold         (bf)
+%   - SansItalic       (it)
+%   - SansSlanted      (sl)
+%   - SansBoldItalic   (bi)
+%   - SansBoldSlanted  (bs)
+%   - SansCaps         (sc)
+% - tt (teletype / monospace):
+%   - Mono             (tf)
+%   - MonoBold         (bf)
+%   - MonoItalic       (it)
+%   - MonoSlanted      (sl)
+%   - MonoBoldItalic   (bi)
+%   - MonoBoldSlanted  (bs)
+%   - MonoCaps         (sc)
+% - mm (maths):
+%   - MathRoman        (tf)
+%   - MathBold         (bf)
+% - hw (handwriting):
+%   - Handwriting      (tf)
+% - cg (calligraphy):
+%   - Calligraphy      (tf)
+%
+% So if you are defining (say) a sans-serif font instead of a monospace one,
+% you will want to use the names "Sans", "SansBold", "SansItalic", etc.
 \starttypescript[cascadia]
   % add a fallback in case we try to use some characters that are missing
   % from the font
@@ -55,6 +96,9 @@
 
 % step 3/3: now define a 'typeface' from these fonts and give it a name
 \starttypescript[cascadia]
+  % note:
+  %   tt   = teletype
+  %   mono = monospace
   \definetypeface[cascadia] [tt] [mono] [cascadia] [default]
 \stoptypescript
 
