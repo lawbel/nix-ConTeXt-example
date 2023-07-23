@@ -23,11 +23,11 @@ in ConTeXt:
 ## To Build
 
 To try out building the document, thanks to nix, all need to do is run
-`nix build github:rvLMdE7/nix-ConTeXt-example`. This will put the resulting
+`nix build github:lawbel/nix-ConTeXt-example`. This will put the resulting
 document at `./result/main.pdf`.
 
 Alternatively, you can clone the repository in the standard way by running
-`git clone https://github.com/rvLMdE7/nix-ConTeXt-example` and then run
+`git clone https://github.com/lawbel/nix-ConTeXt-example` and then run
 `nix build`.
 
 ## Examine Inputs/Outputs
@@ -35,9 +35,9 @@ Alternatively, you can clone the repository in the standard way by running
 It is also possible to inspect this project:
 
 - to show the outputs provided, run
-  `nix flake show github:rvLMdE7/nix-ConTeXt-example`
+  `nix flake show github:lawbel/nix-ConTeXt-example`
 - to show metadata & inputs required, run
-  `nix flake show github:rvLMdE7/nix-ConTeXt-example`
+  `nix flake show github:lawbel/nix-ConTeXt-example`
 
 ## Images
 
