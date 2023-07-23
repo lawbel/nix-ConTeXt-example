@@ -21,9 +21,9 @@ a \CONTEXT{} document.
 
 \starttyping
 stdenv.mkDerivation {
-    buildInputs = [texlive.combined.scheme-context];
-    buildPhase  = "FONTCONFIG_FILE=${fonts} context main.tex";
-    unpackPhase = "mkdir -p $out && cp main.pdf $out"
+    buildInputs  = [pkgs.texlive.combined.scheme-context];
+    buildPhase   = "FONTCONFIG_FILE=${fonts} context main.tex";
+    installPhase = "mkdir -p $out && cp main.pdf $out";
 }
 \stoptyping
 
