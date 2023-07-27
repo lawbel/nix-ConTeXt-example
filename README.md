@@ -37,7 +37,7 @@ It is also possible to inspect this project:
 - to show the outputs provided, run
   `nix flake show github:lawbel/nix-ConTeXt-example`
 - to show metadata & inputs required, run
-  `nix flake show github:lawbel/nix-ConTeXt-example`
+  `nix flake metadata github:lawbel/nix-ConTeXt-example`
 
 ## Images
 
